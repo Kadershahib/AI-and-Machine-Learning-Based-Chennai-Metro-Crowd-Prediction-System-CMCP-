@@ -1,0 +1,82 @@
+{
+  "features": [
+    "weekday",
+    "is_weekend",
+    "hour",
+    "station_tier",
+    "is_interchange",
+    "is_it_corridor",
+    "is_festival",
+    "weather_encoded",
+    "line_encoded"
+  ],
+  "target_classes": [
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "weather_classes": [
+    "Clear",
+    "Cloudy",
+    "Heavy Rain",
+    "Light Rain"
+  ],
+  "line_classes": [
+    "Blue",
+    "Green"
+  ],
+  "accuracy": 0.8867,
+  "classification_report": {
+    "High": {
+      "precision": 0.8678730788299455,
+      "recall": 0.9542109566639412,
+      "f1-score": 0.9089964948721277,
+      "support": 3669.0
+    },
+    "Low": {
+      "precision": 0.9124657245306897,
+      "recall": 0.9057788944723618,
+      "f1-score": 0.9091100136597667,
+      "support": 4776.0
+    },
+    "Medium": {
+      "precision": 0.8775995246583482,
+      "recall": 0.8237590630228667,
+      "f1-score": 0.8498273878020713,
+      "support": 5379.0
+    },
+    "accuracy": 0.88671875,
+    "macro avg": {
+      "precision": 0.8859794426729946,
+      "recall": 0.8945829713863899,
+      "f1-score": 0.8893112987779886,
+      "support": 13824.0
+    },
+    "weighted avg": {
+      "precision": 0.8870638360621309,
+      "recall": 0.88671875,
+      "f1-score": 0.8860126652135578,
+      "support": 13824.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      3501,
+      0,
+      168
+    ],
+    [
+      0,
+      4326,
+      450
+    ],
+    [
+      533,
+      415,
+      4431
+    ]
+  ],
+  "model": "XGBClassifier",
+  "n_estimators": 300,
+  "max_depth": 6
+}

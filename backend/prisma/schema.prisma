@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Station {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  line          String   // "Blue" | "Green"
+  tier          Int      // 1-5, size/importance
+  isInterchange Boolean  @default(false)
+  isItCorridor  Boolean  @default(false)
+  latitude      Float
+  longitude     Float
+  order         Int      // position along the line for map rendering
+
+  predictions   Prediction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Prediction {
+  id           String   @id @default(cuid())
+  station      Station  @relation(fields: [stationId], references: [id])
+  stationId    String
+  hour         Int
+  crowdLevel   String   // "Low" | "Medium" | "High"
+  crowdPercent Float
+  confidence   Float
+  weather      String
+  isFestival   Boolean  @default(false)
+  predictedAt  DateTime @default(now())
+
+  @@index([stationId, hour])
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
