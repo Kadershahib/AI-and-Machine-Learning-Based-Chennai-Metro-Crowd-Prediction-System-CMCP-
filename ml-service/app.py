@@ -38,6 +38,13 @@ def load_artifacts():
         metadata = json.load(f)
 
 
+# Load the model as soon as this file is imported — this covers both
+# `python app.py` (local dev) AND `gunicorn app:app` (production on Render).
+# Without this line, gunicorn never runs the __main__ block below, so the
+# model would never actually load in production.
+load_artifacts()
+
+
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "model_loaded": model is not None})
@@ -125,5 +132,4 @@ def predict_batch():
 
 
 if __name__ == "__main__":
-    load_artifacts()
     app.run(host="0.0.0.0", port=5001, debug=True)
