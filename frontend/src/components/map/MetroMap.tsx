@@ -31,7 +31,7 @@ export default function MetroMap({ stations, crowdByStation, confidenceByStation
       >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
         <Polyline
